@@ -1,0 +1,171 @@
+<link rel="stylesheet" href="static/blog/common.css">
+<link rel="stylesheet" href="static/blog/style.css">
+
+
+<div id="wrapper">
+
+	<div id="header">
+		<div class="header_in">
+			<h1><a href=""><img src="" alt="" /></a>LOGO</h1>
+
+            {% if user.is_authenticated %}
+
+			<ul class="menu">
+				<li><a href="">about</a></li>
+				<li><a href="">statistic</a></li>
+				<li><a></a></li>
+				<li>Hello {{user.username }}</li>
+				<li><a href="{% url 'account_logout' %}">logout</a></li>
+			</ul>
+
+            {% else %}
+                <ul class="menu">
+                    <li><a href="">about</a></li>
+                    <li><a href="">statistic</a></li>
+                    <li><a></a></li>
+                    <li><a href="{% url 'account_signup' %}">singup</a></li>
+                    <li><a href="{% url 'account_login' %}">login</a></li>
+                </ul>
+            {% endif %}
+
+
+
+		</div>
+	</div>
+
+	<!-- content -->
+	<div id="content">
+	
+	
+	<!-- section1 -->
+		<div id="section1">
+			<div class="blank_tosize"></div>
+			<div class="section1_in">
+				<span>I USE TUMBLER</span>
+				<div class="section1_in_in">
+
+                    {% if user.is_authenticated %}
+                        <form method="POST">
+                        {% csrf_token %}
+                        <input type="submit" value="MINUS" name="summary" />
+                            <div class="sec1_img">
+                                <div ><img src="static/images/tumbler.png" alt="" height="430px"/></div>
+                                <div>{{ user.username }} count: {{ myeco }}</div>
+                            </div>
+                        <input type="submit" value="PLUS" name="due_date" />
+                        </form>
+                    {% else %}
+            			<div class="sec1_img">
+						<div ><img src="static/images/tumbler.png" alt="" height="430px"/></div>
+						<div>{{ eco }}</div>
+						</div>
+                    {% endif %}
+
+				</div>	
+			</div>	
+		</div><!-- section1 -->
+
+		
+		<section id="p">
+			<p class="p1">{{ ago }} <span>people</span></p>
+			<p class="p2">{{ eco }} <span>times</span></p>
+			<p class="p3"><span>We Saved</span></p>
+		</section>
+		
+		
+	<!-- section2 -->
+		<div id="section2">
+			<div class="box box01">
+				<div class="img">
+					<img src="static/images/tree_white.png" alt="">
+				</div>
+				<p id="save_tree"></p>
+				<span>tree</span>
+				<span class="tooltiptext">1 tumbler = 0.004tree</span>
+			</div>
+			<div class="box box02">
+				<div class="img">
+					<img src="static/images/water_white.png" alt="">
+				</div>
+				<p id="save_water"></p>
+				<span>water</span>
+				<span class="tooltiptext">1 tumbler = 0.1L</span>
+			</div>
+			<div class="box box03">
+				<div class="img">
+					<img src="static/images/co2_white.png" alt="">
+				</div>
+				<p id="save_gas"></p>
+				<span>gas</span>
+				<span class="tooltiptext">1 tumbler = 0.1KG</span>
+			</div>
+			<div class="box box04">
+				<div class="img">
+					<img src="static/images/trash_white.png" alt="">
+				</div>
+				<p id="save_garbage"></p>
+				<span>trash</span>
+				<span class="tooltiptext">1 tumbler = 0.03kg</span>
+			</div>
+		</div><!-- section2 -->
+
+
+		<!-- section4 -->
+		<div id="section4">
+			<div class="img">
+				<img src="static/images/garbages.jpg" alt="" />
+			</div>
+			<div class="text">
+				<ul>
+					<li>■ FACT1</li>
+					<li>■ FACT2</li>
+					<li>■ FACT3</li>
+				</ul>
+				<a href="" class="moreinfo"><div>MOREINFO</div></a>
+			</div>
+		</div><!-- section4 -->
+
+
+        {% if user.is_authenticated %}
+        {% else %}
+        <!-- section3 -->
+		<section id="section3">
+			<span>are yor ready to eco?
+
+				<a href="{% url 'account_signup' %}" >Join us</a>
+        	</span>
+		</section><!-- section3 -->
+        {% endif %}
+
+		
+	</div><!-- content -->
+
+	
+	<!-- footer -->
+	<div id="footer">
+		<div class="footer_in">
+			<ul>
+				<li>share us</li>
+				<li>follow us</li>
+				<li>tag us</li>
+				<li>contact us</li>
+			</ul>
+			<p>&copy Copyright 2017. All Rights Reserved</p>
+		</div>	
+	</div><!-- footer -->
+
+
+</div><!-- wrapper -->
+
+<script>
+var total = {{ eco }};
+var save_tree = total / 250.0;
+var save_gas = total / 10.0;
+var save_water = total / 10.0;
+var save_garbage = total / 33.0;
+document.getElementById("save_tree").innerHTML =save_tree.toFixed(1) + "tree";
+document.getElementById("save_gas").innerHTML =save_gas.toFixed(1) + "kg";
+document.getElementById("save_water").innerHTML =save_water.toFixed(1) + "L";
+document.getElementById("save_garbage").innerHTML =save_garbage.toFixed(1) + "kg";
+</script>
+

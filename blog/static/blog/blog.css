@@ -1,0 +1,28 @@
+.page-header {
+    background-color: #504d48;
+    margin-top: 0;
+    padding: 20px 20px 20px 30px;
+}
+
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    color: #ffffff;
+    font-size: 36pt;
+    text-decoration: none;
+}
+
+a {
+    color: d6dc3d;
+}
+
+body {
+    padding-left: 15px;
+}
+
+section {
+    border-style: solid;
+    padding: 20px
+}
+
+section > p {
+    color : blue;
+}
